@@ -10,8 +10,21 @@
 
 
 var bombsArray = [];
+var safesArray = []; //contiene tutti i numeri possibili (non vogliamo che l'utente utilizzi lo stesso numero)
+var maxNumber = 100;
 
-console.log(createBombs(bombsArray, 100));
+bombsArray = createBombs(bombsArray, maxNumber);
+
+var punteggio = game(bombsArray, safesArray, maxNumber);
+
+console.log("Game Over!");
+console.log("Il tuo punteggio e':" + punteggio);
+
+// contare da 1 a 100 - 16 (=84)
+while (true) {
+
+}
+
 //funzioni
 
   //creo bombe numeri
@@ -33,5 +46,20 @@ function randomNumberInRange(min, max) {
     console.log("Non sono numeri");
   } else {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}
+
+
+function game(bombsArray, safesArray, maxNumber) {
+  while (safesArray.length < maxNumber - 16) {
+    var numberUser = parseInt(prompt("Inserisci un numero e prova a non morire:"));
+
+    if (!isNaN(numberUser) && 1 <= numberUser && numberUser <=100 && !safesArray.includes(numberUser)) {
+      if (!bombsArray.includes(numberUser)) {
+        safesArray.push(numberUser);
+      } else {
+        return safesArray.length;
+      }
+    }
   }
 }
