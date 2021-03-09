@@ -18,7 +18,7 @@ console.log(createBombs(bombsArray, 100));
   //(e' stato creato una funzione che genera
   // 16 numeri casuali differenti tra loro salvando in un array)
 function createBombs(array, max) {
-  while (array.length <=16) {
+  while (array.length <=16 -1) {
     var number = randomNumberInRange(1, max)
 
     if (!array.includes(number) == true) {
@@ -29,7 +29,7 @@ function createBombs(array, max) {
 }
 
 function randomNumberInRange(min, max) {
-  if (isNaN(min)) || isNaN(max)) {
+  if (isNaN(min) || isNaN(max)) {
     console.log("Non sono numeri");
   } else {
     return Math.floor(Math.random() * (max - min + 1)) + min;
